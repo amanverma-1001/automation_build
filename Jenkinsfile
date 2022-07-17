@@ -1,5 +1,6 @@
 pipeline {
-  agent none
+  agent any
+  stages{
     stage('Node Install') {
       agent {
         docker {
@@ -13,3 +14,4 @@ pipeline {
       }
     }
   }
+}
