@@ -1,0 +1,10 @@
+version: '2'
+services:
+     web: 
+        image: aman1007/react:2.0
+        build: .  
+        ports:
+           - "3000:3000"
+        volumes:
+           - /app/node_modules
+           - .:/app     
