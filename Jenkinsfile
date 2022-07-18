@@ -11,7 +11,7 @@ pipeline {
     {
         agent any
         steps{
-            sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 ttp://us.icr.io'
+            sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 http://us.icr.io'
         }
     }
     stage('Docker tag')
