@@ -4,7 +4,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t aman1007/react:4.0 .'
+        sh 'docker build -t aman1007/react:5.0 .'
       }
     }
     stage('Docker Push') {
