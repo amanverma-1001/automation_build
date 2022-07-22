@@ -11,21 +11,21 @@ pipeline {
     {
         agent any
         steps{
-            sh 'docker login'
+            sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
         }
     }
     stage('Docker tag')
     {
         agent any
         steps{
-            sh 'docker tag aman1007/react:5.0'
+            sh 'docker tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
     }
     stage('Docker push')
     {
         agent any
         steps{
-       sh 'docker push '
+       sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
     }
  }
