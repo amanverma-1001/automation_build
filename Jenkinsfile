@@ -16,21 +16,8 @@ pipeline {
              sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
        
-
-    }
-   """ stage('Docker tag')
-    {
-        agent any
-        steps{
-            sh 'docker tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
-        }
-    }
-    stage('Docker push')
-    {
-        agent any
-        steps{
-       sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
-        }
-    }"""
+ 
+     }
+   
  }
 }
