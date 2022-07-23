@@ -25,7 +25,7 @@ pipeline {
     stage('Cluster login') {
             steps {
                sh 'oc login https://api.foramanverma.cp.fyre.ibm.com:6443 -u kubeadmin -p IAK7b-Ea7MB-RUGPn-MWcqI --insecure-skip-tls-verify=true'
-               sh 'oc new-project user-getting-started2 --display-name="Getting Started with OpenShift2"'
+               sh 'oc new-project user-getting-started3 --display-name="Getting Started with OpenShift2"'
                sh 'oc adm policy add-role-to-user view -z default -'
                sh 'oc new-app quay.io/openshiftroadshow/parksmap:latest --name=parksmap2'
                sh 'oc get service'
@@ -35,3 +35,4 @@ pipeline {
          }
    }
 }
+
