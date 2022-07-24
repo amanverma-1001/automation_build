@@ -3,15 +3,15 @@ pipeline {
   stages{
     stage('Docker Build') {
       steps {
-        sh 'docker build -t aman1007/react:5.0 .'
+        sh 'podman build -t aman1007/react:5.0 .'
       }
     }
     stage('Docker login')
     {
         steps{
-            sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
-             sh 'docker tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
-             sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
+            sh 'podman login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
+             sh 'podman tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
+             sh 'podman push us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
       }
     stage('Install oc'){
@@ -25,7 +25,6 @@ pipeline {
     stage('Cluster login') {
             steps {
                sh 'oc login https://api.foramanverma.cp.fyre.ibm.com:6443 -u kubeadmin -p IAK7b-Ea7MB-RUGPn-MWcqI --insecure-skip-tls-verify=true'
-               sh 'yum install -y podman'
                sh 'podman login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
                sh 'podman tag us.icr.io/wmldeveloperregistry/amanimage:0.21 $(oc registry info)/default/amanjenkins:0.21'
                sh 'podman push $(oc registry info)/default/amanjenkins:0.21 --tls-verify=false'
