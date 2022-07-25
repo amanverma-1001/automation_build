@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: react-deployment-withsecretjenkins
+spec: 
+    replicas: 1
+    selector:
+        matchLabels:
+             component: react
+    template:
+        metadata:
+          labels:
+              component: react
+        spec:
+           containers:
+              - name: reactappsecret
+                image: us.icr.io/wmldeveloperregistry/amanimage:0.21
+                ports:
+                     - containerPort: 3000
+           imagePullSecrets:
+                 - name: amanimageicr
