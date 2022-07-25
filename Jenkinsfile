@@ -9,7 +9,7 @@ pipeline {
     stage('Docker login')
     {
         steps{
-            sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
+             sh  'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
              sh 'docker tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
              sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
@@ -25,12 +25,13 @@ pipeline {
     stage('Cluster login') {
             steps {
                sh 'oc login https://api.foramanverma.cp.fyre.ibm.com:6443 -u kubeadmin -p IAK7b-Ea7MB-RUGPn-MWcqI --insecure-skip-tls-verify=true'
-               sh 'oc new-project user-getting-started3 --display-name="Getting Started with OpenShift2"'
-               sh 'oc adm policy add-role-to-user view -z default -'
-               sh 'oc new-app quay.io/openshiftroadshow/parksmap:latest --name=parksmap2'
-               sh 'oc get service'
-               sh 'oc create route edge parksmap2 --service=parksmap2'
-               sh 'oc get route'
+               sh 'oc project default'
+               sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
+               sh 'docker tag us.icr.io/wmldeveloperregistry/amanimage:0.21 $(oc registry info)/default/amanjenkinsfinal:0.21'
+               sh 'docker push $(oc registry info)/default/amanjenkinsfinal:0.21 --tls-verify=false'
+               sh 'docker tag  $(oc registry info)/default/amanjenkins:0.21 $(oc registry info)/default/amanjenkinsfinal:0.21'
+               sh 'oc adm policy add-role-to-user view -z default -n user-getting-started'
+               sh 'oc new-app default/amanjenkinsfinal:0.1 --name=amanjenkinsimagefinal'
               }
          }
    }
