@@ -9,7 +9,7 @@ pipeline {
     stage('Docker login')
     {
         steps{
-             sh 'docker login -u iamapikey -p BfYBYe69roHDLL3ZsQ2DM7FL42wMQdvx9yJhnVZxi-j5 us.icr.io'
+             sh 'docker login -u iamapikey -p '
              sh 'docker tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
              sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
@@ -24,7 +24,7 @@ pipeline {
             }
     stage('Cluster login') {
             steps {
-               sh 'oc login https://api.foramanverma.cp.fyre.ibm.com:6443 -u kubeadmin -p IAK7b-Ea7MB-RUGPn-MWcqI --insecure-skip-tls-verify=true'
+               sh 'oc login  --insecure-skip-tls-verify=true'
                sh 'oc project default'
                sh 'oc apply -f react-deployment.yaml'
               }
