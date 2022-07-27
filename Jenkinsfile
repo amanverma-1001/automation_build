@@ -24,7 +24,7 @@ pipeline {
             }
     stage('Cluster login') {
             steps {
-               sh 'oc login  --insecure-skip-tls-verify=true'
+              sh 'oc login -u ${{secrets.USERNAME}} -p ${{secrets.PASSWORD}}  --insecure-skip-tls-verify=true'
                sh 'oc project default'
                sh 'oc apply -f react-deployment.yaml'
               }
