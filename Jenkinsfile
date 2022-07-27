@@ -9,7 +9,7 @@ pipeline {
     stage('Docker login')
     {
         steps{
-             sh 'docker login -u iamapikey -p '
+          sh 'docker login -u iamapikey -p ${{secrets.APIKEY}}'
              sh 'docker tag aman1007/react:5.0 us.icr.io/wmldeveloperregistry/amanimage:0.21'
              sh 'docker push us.icr.io/wmldeveloperregistry/amanimage:0.21'
         }
